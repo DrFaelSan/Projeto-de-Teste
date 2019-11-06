@@ -82,7 +82,7 @@ namespace MeuPrimeiroTeste.STMerchant
                 driver.Navigate().GoToUrl(baseURL);
                 driver.Manage().Window.Maximize();
                 login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!");
-                boleto.Sacado("77096739025", "Rafael Vieira Tester", "11999665889", "rafaelvplima@gmail.com", "03980150", "693");
+                boleto.SacadoComErros();
             }
             catch (Exception ex)
             {
