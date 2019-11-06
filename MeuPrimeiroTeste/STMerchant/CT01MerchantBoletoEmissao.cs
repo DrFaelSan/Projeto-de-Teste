@@ -65,7 +65,7 @@ namespace MeuPrimeiroTeste.STMerchant
                 Helper.criarPasta();
                 Helper.capturaImagem(driver, "CT01MerchantBoletoEmissaoTest", "ProcessoDeEmissão");
                 Thread.Sleep(800);
-                MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão de Boleto.");
+                //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão de Boleto.");
                 Helper.deletarPasta();
             }
             finally
@@ -75,14 +75,14 @@ namespace MeuPrimeiroTeste.STMerchant
         }
 
         [Test]
-        public void BoletoEmissaoComErrosTest()
+        public void SacadoComErrosTest()
         {
             try
             {
                 driver.Navigate().GoToUrl(baseURL);
                 driver.Manage().Window.Maximize();
                 login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!");
-                boleto.SacadoComErros();
+                boleto.Sacado("77096739025", "Rafael Vieira Tester", "11999665889", "rafaelvplima@gmail.com", "03980150", "693");
             }
             catch (Exception ex)
             {
@@ -98,8 +98,33 @@ namespace MeuPrimeiroTeste.STMerchant
             }
         }
 
+        [Test]
+        public void CobrancaComErrosTest()
+        {
+            try
+            {
+                driver.Navigate().GoToUrl(baseURL);
+                driver.Manage().Window.Maximize();
+                login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!");
+                boleto.Sacado("77096739025", "Rafael Vieira Tester", "11999665889", "rafaelvplima@gmail.com", "03980150", "693");
+                boleto.CobrancaComErros();
+            }
+            catch (Exception ex)
+            {
+                Helper.criarPasta();
+                Helper.capturaImagem(driver, "CobrancaComErrosTest", "CobrancaComErros()");
+                Thread.Sleep(800);
+                //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Cobrança Com Erros.");
+                Helper.deletarPasta();
+            }
+            finally
+            {
+                driver.Close();
+            }
+        }
+
         #endregion
 
- 
+
     }
 }

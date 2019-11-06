@@ -33,8 +33,7 @@ namespace MeuPrimeiroTeste.PageObject
         private IWebElement BtnAutoPreencher => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Número do documento:'])[1]/following::button[1]"));
         private IWebElement Numero14Calendario => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[1]/following::span[18]"));
         private IWebElement BtnProximaPagina2 => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Anterior'])[1]/following::button[1]"));
-        private IWebElement PopUpPreencherDados2 => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Preenchimento obrigatório'])[2]/following::p[1]"));
-        private IWebElement PopUpValorInferior10 => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Valor inválido'])[1]/following::p[1]"));
+        private IWebElement PopUpValorInvalido => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Valor inválido'])[1]/following::p[1]"));
         //Fim Cobranca
 
         //Inicio Juros e Multa
@@ -87,7 +86,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text.ToLower());
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
             PopUpPreencherDados.Click();
             //Sem nenhum dado até o Momento.
@@ -97,7 +96,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text.ToLower());
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
             PopUpPreencherDados.Click();
             //Só com Documento Válido até o momento.
@@ -109,7 +108,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text.ToLower());
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
             PopUpPreencherDados.Click();
             //Só com o Documento e o Nome Válido até o momento.
@@ -125,7 +124,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text.ToLower());
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
             PopUpPreencherDados.Click();
             // Com Todos Dados Pessoais Válidos Até o Momento.
@@ -143,7 +142,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text.ToLower());
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
             PopUpPreencherDados.Click();
             //Dados Pessoais e o CEP Válido.
@@ -161,7 +160,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text.ToLower());
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
             PopUpPreencherDados.Click();
             //Pronto. Todos Erros Possíveis.
@@ -177,14 +176,51 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(500);
         }
         
-        public void CobrancaComErro()
+        public void CobrancaComErros()
         {
+            //Cobrança sem nenhum dado
             BtnProximaPagina2.Click();
             Thread.Sleep(250);
-            Assert.IsTrue(PopUpValorInferior10.Displayed);
-            EscreverDados.Escrever(PopUpValorInferior10.Text.ToLower());
-            Assert.AreEqual(PopUpValorInferior10.Text.ToLower(), "preenchimento obrigatório".ToLower());
+            Assert.IsTrue(PopUpValorInvalido.Displayed);
+            EscreverDados.Escrever(PopUpValorInvalido.Text);
+            Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser inferior a R$ 10,00".ToLower());
+            PopUpValorInvalido.Click();
+            //Cobraça com valor valido
+            Valor.SendKeys("R$ 1.520,00");
+            Thread.Sleep(500);
+            BtnProximaPagina2.Click();
+            Thread.Sleep(600);
+            Assert.IsTrue(PopUpPreencherDados.Displayed);
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
+            Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
+            PopUpPreencherDados.Click(); 
+          
+            BtnProximaPagina2.Click();
+            Thread.Sleep(600);
+            Assert.IsTrue(PopUpPreencherDados.Displayed);
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
+            Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
             PopUpPreencherDados.Click();
+            //Cobrança com os auto preencher
+            BtnAutoPreencher.Click();
+            Thread.Sleep(350);
+            BtnProximaPagina2.Click();
+            Thread.Sleep(600);
+            Assert.IsTrue(PopUpPreencherDados.Displayed);
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
+            Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
+            PopUpPreencherDados.Click();
+            Thread.Sleep(1000);
+            Numero14Calendario.Click();
+            //Cobraça com valor valido
+            Thread.Sleep(3000);
+            Valor.Clear();
+            Valor.SendKeys("R$ 50.500,01");
+            BtnProximaPagina2.Click();
+            Thread.Sleep(500);
+            Assert.IsTrue(PopUpValorInvalido.Displayed);
+            EscreverDados.Escrever(PopUpValorInvalido.Text);
+            Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser superior a R$50000,00".ToLower());
         }
 
         public void JurosEMulta(string percentualjuros, string percentualmulta)
@@ -198,6 +234,11 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(500);
             BtnProximaPagina3.Click();
             Thread.Sleep(500);
+        }
+
+        public void JurosEMultaComErros()
+        {
+         //Implementar......
         }
 
         public void Split(string documentoSplit, string taxaSplit, string celularSplit, string nomeRazaoSplit, string emailSplit)
@@ -216,6 +257,11 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(350);
             BtnProximaPagina4.Click();
             Thread.Sleep(500);
+        }
+
+        public void SplitComErros()
+        {
+        //implementar....
         }
     }
 }

@@ -33,7 +33,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnLoginEntrar.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpAtencao.Displayed);
-            //EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
+            EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
             Assert.AreEqual(PopUpAtencao.Text.ToLower(), "Necessário informar o(s) campos abaixo!".ToLower());
             PopUpAtencao.Click();
 
@@ -45,7 +45,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnLoginEntrar.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpAtencao.Displayed);
-           // EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
+            EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
             Assert.AreEqual(PopUpAtencao.Text.ToLower(), "Necessário informar o(s) campos abaixo!".ToLower());
             PopUpAtencao.Click();
         }
@@ -56,7 +56,7 @@ namespace MeuPrimeiroTeste.PageObject
             BtnLoginEntrar.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpAtencao.Displayed);
-            //EscreverDadosDePop.Escrever(PopUpAtencao.Text.ToLower());
+            EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
             Assert.AreEqual(PopUpAtencao.Text.ToLower(), "Necessário informar o(s) campos abaixo!".ToLower());
             PopUpAtencao.Click();
         }
@@ -69,7 +69,7 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(500);
             PopUpAtencaoDadosInvalidos.Click();
             Assert.IsTrue(PopUpAtencaoDadosInvalidos.Displayed);
-            //EscreverDados.Escrever(PopUpAtencaoDadosInvalidos.Text.ToLower());
+            EscreverDados.Escrever(PopUpAtencaoDadosInvalidos.Text.ToLower());
             Assert.AreEqual(PopUpAtencaoDadosInvalidos.Text.ToLower(), "atenção\r\nusuário e/ou senha inválidos".ToLower());
         }
 

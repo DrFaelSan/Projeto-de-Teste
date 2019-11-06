@@ -4,11 +4,11 @@ using System.IO;
 namespace MeuPrimeiroTeste.Logger
 {
 
-    public static  class Helper
+    public static class Helper
     {
         ///Diretorio que crio e salvo os dados.
         public static string screenshotsPasta = AppDomain.CurrentDomain.BaseDirectory + "Evidencias";
-        
+
         ///Método para tirar a foto e salvar! esse método é chamado dentro do método "CapturarImagem."
         public static void Screenshot(IWebDriver driver, string screenshotsPasta)
         {
@@ -18,7 +18,7 @@ namespace MeuPrimeiroTeste.Logger
         }
 
         ///Método que eu chamo para capturar a foto na hora que a aplicação quebra.
-        public static void capturaImagem(IWebDriver driver, string casoDeteste, string param )
+        public static void capturaImagem(IWebDriver driver, string casoDeteste, string param)
         {
             var data = DateTime.Now.ToShortDateString().Replace('/', '_');
             Screenshot(driver, AppDomain.CurrentDomain.BaseDirectory + "Evidencias" + "\\" + casoDeteste + "_" + "DDD_" + param + "Data_" + data + ".Png");
@@ -31,9 +31,9 @@ namespace MeuPrimeiroTeste.Logger
             {
                 if (Directory.Exists(path))
                     return;
-                
+
                 DirectoryInfo pasta = Directory.CreateDirectory(path);
-               
+
                 //Console.WriteLine($"Pasta criada com sucesso {Directory.GetCreationTime(path)}.");
             }
             catch (Exception e)
@@ -52,16 +52,20 @@ namespace MeuPrimeiroTeste.Logger
                 if (Directory.Exists(path))
                 {
 
-                    foreach (var files in Directory.GetDirectories(path))
-                        if (files.Contains(".png") || files.Contains(".txt"))
+                    foreach (var files in Directory.GetFiles(path))
+                    {
+                        if (files.Contains(".Png"))
                             Directory.Delete(path, true);
+                        if (files.Contains(".txt"))
+                            Directory.Delete(path, true);
+                    }
                     return;
                 }
             }
             catch (Exception e)
             {
-                //Console.WriteLine($"Não foi possível deletar {e.ToString()}");
+                Console.WriteLine($"Não foi possível deletar {e.ToString()}");
             }
         }
     }
- }
+}

@@ -58,7 +58,8 @@ namespace MeuPrimeiroTeste.STMerchant
             {
                 Helper.criarPasta();
                 Helper.capturaImagem(driver, "TesteSemDadosLogin", "SemDados");
-                //Thread.Sleep(800);
+                EscreverDados.Escrever(ex.Message);
+                Thread.Sleep(800);
                 //MailService.sendMail(ex.StackTrace, "Teste Sem Dados no Login");
                 Helper.deletarPasta();
             }
@@ -81,8 +82,9 @@ namespace MeuPrimeiroTeste.STMerchant
             {
                 Helper.criarPasta();
                 Helper.capturaImagem(driver, "TesteSemEmailLogin", "SemEmail");
+                EscreverDados.Escrever(ex.Message);
                 Thread.Sleep(800);
-                MailService.sendMail(ex.StackTrace, "Teste Sem Email no Login");
+                //MailService.sendMail(ex.StackTrace, "Teste Sem Email no Login");
                 Helper.deletarPasta();
             }
             finally
@@ -104,8 +106,9 @@ namespace MeuPrimeiroTeste.STMerchant
             {
                 Helper.criarPasta();
                 Helper.capturaImagem(driver, "TesteSemSenhaLogin", "SemSenha");
+                EscreverDados.Escrever(ex.Message);
                 Thread.Sleep(800);
-                MailService.sendMail(ex.StackTrace, "Teste Sem Senha no Login");
+                //MailService.sendMail(ex.StackTrace, "Teste Sem Senha no Login");
                 Helper.deletarPasta();
             }
             finally
@@ -130,7 +133,7 @@ namespace MeuPrimeiroTeste.STMerchant
                 Helper.capturaImagem(driver, "TesteComDadosIncorretos", "TesteComDadosIncorretos");
                 EscreverDados.Escrever(ex.Message);
                 Thread.Sleep(800);
-                MailService.sendMail(ex.StackTrace, "Teste Com Dados Incorretos");
+                //MailService.sendMail(ex.StackTrace, "Teste Com Dados Incorretos");
                 Helper.deletarPasta();
             }
             finally
