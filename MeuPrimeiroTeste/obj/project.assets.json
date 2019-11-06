@@ -5341,11 +5341,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Treinamento 6\\Desktop\\MeuPrimeiroTeste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
+      "projectUniqueName": "C:\\Users\\Treinamento 6\\Desktop\\Projeto de Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
       "projectName": "MeuPrimeiroTeste",
-      "projectPath": "C:\\Users\\Treinamento 6\\Desktop\\MeuPrimeiroTeste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
+      "projectPath": "C:\\Users\\Treinamento 6\\Desktop\\Projeto de Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
       "packagesPath": "C:\\Users\\Treinamento 6\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Treinamento 6\\Desktop\\MeuPrimeiroTeste\\MeuPrimeiroTeste\\obj\\",
+      "outputPath": "C:\\Users\\Treinamento 6\\Desktop\\Projeto de Teste\\MeuPrimeiroTeste\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
