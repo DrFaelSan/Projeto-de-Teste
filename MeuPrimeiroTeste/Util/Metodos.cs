@@ -20,20 +20,13 @@ namespace MeuPrimeiroTeste.Util
         [SetUp]
         public void IniciarTestes() => BuscarDriverLocal(_BrowserSelecionado);
 
-
         private void BuscarDriverLocal(Browsers browsers)
         {
             switch (browsers)
-            {
-                default:
-                case Browsers.Chrome:
-                    Driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory); break;
-                case Browsers.FireFox:
-                    Driver = new FirefoxDriver();
-                    break;
-                case Browsers.Edge:
-                    Driver = new EdgeDriver();
-                    break;
+            {   
+                case Browsers.Chrome: Driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory); break;
+                case Browsers.FireFox: Driver = new FirefoxDriver(AppDomain.CurrentDomain.BaseDirectory); break;
+                case Browsers.Edge: Driver = new EdgeDriver(AppDomain.CurrentDomain.BaseDirectory);  break;
             }
         }
 

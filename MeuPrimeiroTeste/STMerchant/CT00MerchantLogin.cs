@@ -48,7 +48,6 @@ namespace STMerchant
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-                Thread.Sleep(4000);
                 login.ExecurtarLoginSemEmail("Senha123!");
             }
             catch (Exception ex)
@@ -70,7 +69,6 @@ namespace STMerchant
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-                Thread.Sleep(4000);
                 login.ExecurtarLoginSemSenha("bruno.f@inttecnologia.com.br");
             }
             catch (Exception ex)
@@ -92,7 +90,6 @@ namespace STMerchant
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-                Thread.Sleep(4000);
                 login.ExecutarLoginComDadosIncorretos();
             }
             catch (Exception ex)
