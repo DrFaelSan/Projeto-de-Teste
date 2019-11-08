@@ -27,7 +27,6 @@ namespace MeuPrimeiroTeste.PageObject
         private IWebElement PopUpPreencherDados => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Campaigns'])[1]/following::strong[1]"));
         //FIM SACADO
 
-
         //Inicio Cobranca
         private IWebElement Valor => _driver.FindElement(By.Name("Valor"));
         private IWebElement BtnAutoPreencher => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Número do documento:'])[1]/following::button[1]"));
@@ -193,8 +192,7 @@ namespace MeuPrimeiroTeste.PageObject
             Assert.IsTrue(PopUpPreencherDados.Displayed);
             EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click(); 
-          
+            PopUpPreencherDados.Click();       
             BtnProximaPagina2.Click();
             Thread.Sleep(600);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
@@ -233,12 +231,24 @@ namespace MeuPrimeiroTeste.PageObject
             DiaInicioCobrancaMulta.Click();
             Thread.Sleep(500);
             BtnProximaPagina3.Click();
-            Thread.Sleep(500);
+            Thread.Sleep(750);
+            Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser superior a R$50000,00".ToLower());
         }
 
         public void JurosEMultaComErros()
         {
-         //Implementar......
+            PercentualJuros.SendKeys("101,00%");
+            Thread.Sleep(350);
+            PercentualMulta.SendKeys("101,00%");
+            Thread.Sleep(350);
+            DiaInicioCobrancaJuros.Click();
+            DiaInicioCobrancaMulta.Click();
+            Thread.Sleep(500);
+            BtnProximaPagina3.Click();
+            Thread.Sleep(500);
+            Assert.IsTrue(PopUpPreencherDados.Displayed);
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
+            PopUpPreencherDados.Click();
         }
 
         public void Split(string documentoSplit, string taxaSplit, string celularSplit, string nomeRazaoSplit, string emailSplit)
@@ -257,11 +267,31 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(350);
             BtnProximaPagina4.Click();
             Thread.Sleep(500);
+            Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser superior a R$50000,00".ToLower());
         }
 
         public void SplitComErros()
         {
-        //implementar....
+            DocumentoSplit.SendKeys("  55aa!");
+            Thread.Sleep(350);
+            TaxaSplit.SendKeys("90,01");
+            Thread.Sleep(350);
+            CelularSplit.SendKeys("   aa!");
+            Thread.Sleep(350);
+            NomeRazaoSplit.SendKeys("Razão para Testes");
+            Thread.Sleep(350);
+            EmailSplit.SendKeys("matheus@hotmail.com.");
+            Thread.Sleep(350);
+            BtnIncluirSplit.Click();
+            Thread.Sleep(350);
+            Assert.IsTrue(PopUpPreencherDados.Displayed);
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
+            PopUpPreencherDados.Click();
+            BtnProximaPagina4.Click();
+            Thread.Sleep(500);
+            Assert.IsTrue(PopUpPreencherDados.Displayed);
+            EscreverDados.Escrever(PopUpPreencherDados.Text);
+            PopUpPreencherDados.Click();
         }
     }
 }

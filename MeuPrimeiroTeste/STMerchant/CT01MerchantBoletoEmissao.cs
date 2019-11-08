@@ -87,7 +87,6 @@ namespace MeuPrimeiroTeste.STMerchant
             catch (Exception ex)
             {
                 Helper.criarPasta();
-                Helper.capturaImagem(driver, "SacadoComErrosTest", "SacadoComErros");
                 //Thread.Sleep(800);
                 //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Sacado Com Erros.");
                 Helper.deletarPasta();
@@ -123,8 +122,56 @@ namespace MeuPrimeiroTeste.STMerchant
             }
         }
 
+        [Test]
+        public void JurosComErroTest()
+        {
+            try
+            {
+                driver.Navigate().GoToUrl(baseURL);
+                driver.Manage().Window.Maximize();
+                login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!");
+                boleto.Sacado("77096739025", "Rafael Vieira Tester", "11999665889", "rafaelvplima@gmail.com", "03980150", "693");
+                boleto.Cobranca("R$ 1.520,00");
+                boleto.JurosEMultaComErros();
+            }
+            catch (Exception ex)
+            {
+                Helper.criarPasta();
+                Helper.capturaImagem(driver, "CobrancaComErrosTest", "CobrancaComErros()");
+                Thread.Sleep(800);
+                //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Cobrança Com Erros.");
+                //Helper.deletarPasta();
+            }
+            finally
+            {
+                driver.Close();
+            }
+        }
+
+        [Test]
+        public void SplitComErroTest()
+        {
+
+            try
+            {
+                driver.Navigate().GoToUrl(baseURL);
+                driver.Manage().Window.Maximize();
+                login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!");
+              
+            }
+            catch (Exception ex)
+            {
+                Helper.criarPasta();
+                Helper.capturaImagem(driver, "CobrancaComErrosTest", "CobrancaComErros()");
+                Thread.Sleep(800);
+                //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Cobrança Com Erros.");
+                //Helper.deletarPasta();
+            }
+            finally
+            {
+                driver.Close();
+            }
+        }
         #endregion
-
-
     }
 }
