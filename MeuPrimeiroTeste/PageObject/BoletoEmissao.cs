@@ -2,57 +2,60 @@
 using System.Threading;
 using NUnit.Framework;
 using MeuPrimeiroTeste.Logger;
+using MeuPrimeiroTeste.Util;
+using System;
 
 namespace MeuPrimeiroTeste.PageObject
 {
     /// <summary>
     /// Mapeamento do processo de Emitir Boleto.
     /// </summary>
-    public class BoletoEmissao
+    public class BoletoEmissao : Base
     {
-        public IWebDriver _driver;
-        public BoletoEmissao(IWebDriver driver) => _driver = driver;
 
+        #region Mapeamento da pagina
         //Botão Boleto ! Inicio do Processo ! 
-        private IWebElement BtnBoleto => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Dashboard'])[1]/following::span[1]"));
-        private IWebElement BtnEmissao => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Boleto'])[1]/following::span[1]"));
-        private IWebElement Documento => _driver.FindElement(By.Name("Documento"));
-        private IWebElement NomeRazao => _driver.FindElement(By.Name("NomeRazao"));
-        private IWebElement Celular => _driver.FindElement(By.Name("Celular"));
-        private IWebElement Email => _driver.FindElement(By.Name("Email"));
-        private IWebElement Cep => _driver.FindElement(By.Name("Cep"));
-        private IWebElement Numero => _driver.FindElement(By.Name("Numero"));
-        private IWebElement BtnProximaPagina1 => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Número do documento:'])[2]/following::button[1]"));
+        private IWebElement BtnBoleto => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Dashboard'])[1]/following::span[1]"));
+        private IWebElement BtnEmissao => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Boleto'])[1]/following::span[1]"));
+        private IWebElement Documento => Driver.FindElement(By.Name("Documento"));
+        private IWebElement NomeRazao => Driver.FindElement(By.Name("NomeRazao"));
+        private IWebElement Celular => Driver.FindElement(By.Name("Celular"));
+        private IWebElement Email => Driver.FindElement(By.Name("Email"));
+        private IWebElement Cep => Driver.FindElement(By.Name("Cep"));
+        private IWebElement Numero => Driver.FindElement(By.Name("Numero"));
+        private IWebElement BtnProximaPagina1 => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Número do documento:'])[2]/following::button[1]"));
 
-        private IWebElement PopUpPreencherDados => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Campaigns'])[1]/following::strong[1]"));
+        private IWebElement PopUpPreencherDados => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Campaigns'])[1]/following::strong[1]"));
         //FIM SACADO
 
         //Inicio Cobranca
-        private IWebElement Valor => _driver.FindElement(By.Name("Valor"));
-        private IWebElement BtnAutoPreencher => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Número do documento:'])[1]/following::button[1]"));
-        private IWebElement Numero14Calendario => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[1]/following::span[18]"));
-        private IWebElement BtnProximaPagina2 => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Anterior'])[1]/following::button[1]"));
-        private IWebElement PopUpValorInvalido => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Valor inválido'])[1]/following::p[1]"));
+        private IWebElement Valor => Driver.FindElement(By.Name("Valor"));
+        private IWebElement BtnAutoPreencher => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Número do documento:'])[1]/following::button[1]"));
+        private IWebElement Numero14Calendario => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[1]/following::span[18]"));
+        private IWebElement BtnProximaPagina2 => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Anterior'])[1]/following::button[1]"));
+        private IWebElement PopUpValorInvalido => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Valor inválido'])[1]/following::p[1]"));
         //Fim Cobranca
 
         //Inicio Juros e Multa
-        private IWebElement PercentualJuros => _driver.FindElement(By.Name("PercentualJuros"));
-        private IWebElement PercentualMulta => _driver.FindElement(By.Name("PercentualMulta"));
-        private IWebElement DiaInicioCobrancaJuros => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[2]/following::span[19]"));
-        private IWebElement DiaInicioCobrancaMulta => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[3]/following::span[26]"));
-        private IWebElement BtnProximaPagina3 => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Anterior'])[1]/following::button[1]"));
+        private IWebElement PercentualJuros => Driver.FindElement(By.Name("PercentualJuros"));
+        private IWebElement PercentualMulta => Driver.FindElement(By.Name("PercentualMulta"));
+        private IWebElement DiaInicioCobrancaJuros => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[2]/following::span[19]"));
+        private IWebElement DiaInicioCobrancaMulta => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[3]/following::span[26]"));
+        private IWebElement BtnProximaPagina3 => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Anterior'])[1]/following::button[1]"));
         //Fim Juros e Multa        
 
         //inicio Split
-        private IWebElement DocumentoSplit => _driver.FindElement(By.Name("DocumentoSplit"));
-        private IWebElement TaxaSplit => _driver.FindElement(By.Name("TaxaSplit"));
-        private IWebElement CelularSplit => _driver.FindElement(By.Name("CelularSplit"));
-        private IWebElement NomeRazaoSplit => _driver.FindElement(By.Name("NomeRazaoSplit"));
-        private IWebElement EmailSplit => _driver.FindElement(By.Name("EmailSplit"));
-        private IWebElement BtnIncluirSplit => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='E-mail:'])[1]/following::button[1]"));
-        private IWebElement BtnProximaPagina4 => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Anterior'])[1]/following::button[1]"));
+        private IWebElement DocumentoSplit => Driver.FindElement(By.Name("DocumentoSplit"));
+        private IWebElement TaxaSplit => Driver.FindElement(By.Name("TaxaSplit"));
+        private IWebElement CelularSplit => Driver.FindElement(By.Name("CelularSplit"));
+        private IWebElement NomeRazaoSplit => Driver.FindElement(By.Name("NomeRazaoSplit"));
+        private IWebElement EmailSplit => Driver.FindElement(By.Name("EmailSplit"));
+        private IWebElement BtnIncluirSplit => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='E-mail:'])[1]/following::button[1]"));
+        private IWebElement BtnProximaPagina4 => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Anterior'])[1]/following::button[1]"));
         //Fim Split
+        #endregion
 
+        #region Metodos de Testes 
         public void Sacado(string documento, string nomeourazao, string celular, string email, string cep, string numero)
         {
             BtnBoleto.Click();
@@ -72,7 +75,7 @@ namespace MeuPrimeiroTeste.PageObject
             Numero.SendKeys(numero);
             Thread.Sleep(350);
             BtnProximaPagina1.Click();
-            Thread.Sleep(500);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
         }
 
         public void SacadoComErros()
@@ -83,7 +86,7 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(1300);
             //Sem Dados
             BtnProximaPagina1.Click();
-            Thread.Sleep(250);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
             EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
@@ -172,7 +175,7 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(350);
             Numero14Calendario.Click();
             BtnProximaPagina2.Click();
-            Thread.Sleep(500);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
         }
         
         public void CobrancaComErros()
@@ -233,6 +236,8 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina3.Click();
             Thread.Sleep(750);
             Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser superior a R$50000,00".ToLower());
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+
         }
 
         public void JurosEMultaComErros()
@@ -268,6 +273,8 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina4.Click();
             Thread.Sleep(500);
             Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser superior a R$50000,00".ToLower());
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+
         }
 
         public void SplitComErros()
@@ -293,5 +300,7 @@ namespace MeuPrimeiroTeste.PageObject
             EscreverDados.Escrever(PopUpPreencherDados.Text);
             PopUpPreencherDados.Click();
         }
+
+        #endregion
     }
 }
