@@ -2,6 +2,7 @@
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
 using MeuPrimeiroTeste.Util;
+using System;
 
 namespace MeuPrimeiroTeste.PageObject
 {

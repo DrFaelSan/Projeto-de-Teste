@@ -3,6 +3,7 @@ using OpenQA.Selenium.Support.UI;
 using System.Threading;
 using NUnit.Framework;
 using MeuPrimeiroTeste.Util;
+using System;
 
 namespace MeuPrimeiroTeste.PageObject
 {

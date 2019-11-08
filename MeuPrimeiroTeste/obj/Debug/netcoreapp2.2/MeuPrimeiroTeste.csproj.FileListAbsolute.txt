@@ -57,8 +57,6 @@ C:\Users\Treinamento 6\Desktop\Projeto de Teste\MeuPrimeiroTeste\obj\Debug\netco
 C:\Users\Treinamento 6\Desktop\Projeto de Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.AssemblyInfo.cs
 C:\Users\Treinamento 6\Desktop\Projeto de Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.dll
 C:\Users\Treinamento 6\Desktop\Projeto de Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.pdb
-C:\Users\Treinamento 6\Desktop\TestesBackUp0811\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\testhost.exe
-C:\Users\Treinamento 6\Desktop\TestesBackUp0811\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\testhost.dll
 C:\Users\Treinamento 6\Desktop\TestesBackUp0811\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
 C:\Users\Treinamento 6\Desktop\TestesBackUp0811\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
 C:\Users\Treinamento 6\Desktop\TestesBackUp0811\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\nunit.engine.dll

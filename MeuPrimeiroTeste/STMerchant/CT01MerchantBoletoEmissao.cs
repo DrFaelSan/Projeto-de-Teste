@@ -53,7 +53,6 @@ namespace STMerchant
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-                Thread.Sleep(4000);
                 //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
                 login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
                 //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
@@ -63,7 +62,7 @@ namespace STMerchant
             {
                 Helper.criarPasta();
                 Helper.capturaImagem(Driver, "SacadoComErrosTest", "SacadoComErros");
-                //Thread.Sleep(800);
+                Thread.Sleep(800);
                 //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Sacado Com Erros.");
                 Helper.deletarPasta();
             }
@@ -77,7 +76,6 @@ namespace STMerchant
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-                Thread.Sleep(4000);
                 //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
                 login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
                 //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/

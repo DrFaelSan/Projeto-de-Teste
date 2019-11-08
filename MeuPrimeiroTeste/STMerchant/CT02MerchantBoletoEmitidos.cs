@@ -25,8 +25,7 @@ namespace STMerchant
             {
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
-                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-                Thread.Sleep(4000);
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(20);
                 //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
                 login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
                 //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
