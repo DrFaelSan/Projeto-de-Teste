@@ -1,47 +1,20 @@
 ﻿using System;
-using System.Text;
 using MeuPrimeiroTeste.Logger;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using MeuPrimeiroTeste.PageObject;
 using System.Threading;
+using MeuPrimeiroTeste.Util;
 
-namespace MeuPrimeiroTeste.STMerchant
+namespace STMerchant
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.Fixtures)]
-    public class CT00MerchantLogin
+    //[Parallelizable(ParallelScope.Fixtures)] /*aqui eu deixo todos os testes de login em paralelo para rodar em conjunto*/
+    public class CT00MerchantLogin : Metodos
     {
-        private IWebDriver driver;
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private login login;
 
-        [SetUp] //Acontece Antes do Teste
-        public void SetupTest()
-        {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArguments("--test-type", "--disable-hang-monitor", "--new-window", "--no-sandbox", "--lang=" + "pt-BR");
-            driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, chromeOptions); ;
-            baseURL = "http://merchant.intermeiopagamentos.com/#/";
-            verificationErrors = new StringBuilder();
-            login = new login(driver);
-        }
+        private Login login = new Login();
 
-        [TearDown] // Acontece Depois do Teste
-        public void TeardownTest()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
-        }
+        public CT00MerchantLogin() : base(Browsers.Chrome) { }
 
 
         #region TestesDeLogin 
@@ -50,22 +23,20 @@ namespace MeuPrimeiroTeste.STMerchant
         {
             try
             {
-                driver.Navigate().GoToUrl(baseURL);
-                driver.Manage().Window.Maximize();
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                Thread.Sleep(4000);
                 login.ExecutarLoginSemDados();
             }
             catch (Exception ex)
             {
                 Helper.criarPasta();
-                Helper.capturaImagem(driver, "TesteSemDadosLogin", "SemDados");
+                Helper.capturaImagem(Driver, "TesteSemDadosLogin", "SemDados");
                 EscreverDados.Escrever(ex.Message);
                 Thread.Sleep(800);
                 //MailService.sendMail(ex.StackTrace, "Teste Sem Dados no Login");
                 Helper.deletarPasta();
-            }
-            finally
-            {
-                driver.Close();
             }
         }
 
@@ -74,22 +45,20 @@ namespace MeuPrimeiroTeste.STMerchant
         {
             try
             {
-                driver.Navigate().GoToUrl(baseURL);
-                driver.Manage().Window.Maximize();
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                Thread.Sleep(4000);
                 login.ExecurtarLoginSemEmail("Senha123!");
             }
             catch (Exception ex)
             {
                 Helper.criarPasta();
-                Helper.capturaImagem(driver, "TesteSemEmailLogin", "SemEmail");
+                Helper.capturaImagem(Driver, "TesteSemEmailLogin", "SemEmail");
                 EscreverDados.Escrever(ex.Message);
                 Thread.Sleep(800);
                 //MailService.sendMail(ex.StackTrace, "Teste Sem Email no Login");
                 Helper.deletarPasta();
-            }
-            finally
-            {
-                driver.Close();
             }
         }
 
@@ -98,24 +67,21 @@ namespace MeuPrimeiroTeste.STMerchant
         {
             try
             {
-                driver.Navigate().GoToUrl(baseURL);
-                driver.Manage().Window.Maximize();
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                Thread.Sleep(4000);
                 login.ExecurtarLoginSemSenha("bruno.f@inttecnologia.com.br");
             }
             catch (Exception ex)
             {
                 Helper.criarPasta();
-                Helper.capturaImagem(driver, "TesteSemSenhaLogin", "SemSenha");
+                Helper.capturaImagem(Driver, "TesteSemSenhaLogin", "SemSenha");
                 EscreverDados.Escrever(ex.Message);
                 Thread.Sleep(800);
                 //MailService.sendMail(ex.StackTrace, "Teste Sem Senha no Login");
                 Helper.deletarPasta();
             }
-            finally
-            {
-                driver.Close();
-            }
-
         }
 
         [Test]
@@ -123,22 +89,20 @@ namespace MeuPrimeiroTeste.STMerchant
         {
             try
             {
-                driver.Navigate().GoToUrl(baseURL);
-                driver.Manage().Window.Maximize();
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                Thread.Sleep(4000);
                 login.ExecutarLoginComDadosIncorretos();
             }
             catch (Exception ex)
             {
                 Helper.criarPasta();
-                Helper.capturaImagem(driver, "TesteComDadosIncorretos", "TesteComDadosIncorretos");
+                Helper.capturaImagem(Driver, "TesteComDadosIncorretos", "TesteComDadosIncorretos");
                 EscreverDados.Escrever(ex.Message);
                 Thread.Sleep(800);
                 //MailService.sendMail(ex.StackTrace, "Teste Com Dados Incorretos");
                 Helper.deletarPasta();
-            }
-            finally
-            {
-                driver.Close();
             }
         }
         #endregion

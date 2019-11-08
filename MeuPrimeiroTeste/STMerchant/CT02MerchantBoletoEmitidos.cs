@@ -1,72 +1,47 @@
 using System;
-using System.Text;
 using System.Threading;
 using MeuPrimeiroTeste.Logger;
 using MeuPrimeiroTeste.PageObject;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using MeuPrimeiroTeste.Util;
 
 namespace STMerchant
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.Fixtures)]
-    public class CT02MerchantBoletoEmitidos
+    //[Parallelizable(ParallelScope.Fixtures)] /*aqui eu deixo todos os testes de login em paralelo para rodar em conjunto*/
+    public class CT02MerchantBoletoEmitidos : Metodos
     {
-        private IWebDriver driver;
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private login login;
-        private BoletoEmitidos boleto;
+        private Login login = new Login();
+        private BoletoEmitidos boleto = new BoletoEmitidos();
 
-        [SetUp]
-        public void SetupTest()
-        {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArguments("--test-type", "--disable-hang-monitor", "--new-window", "--no-sandbox", "--lang=" + "pt-BR");
-            driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, chromeOptions); 
-            baseURL = "http://merchant.intermeiopagamentos.com/#/";
-            verificationErrors = new StringBuilder();
-            login = new login(driver);
-            boleto = new BoletoEmitidos(driver);
-        }
+        //Aqui declaro qual navegador vou abrir meus testes!.
+        public CT02MerchantBoletoEmitidos() : base(Browsers.Chrome) { }
 
-        [TearDown]
-        public void TeardownTest()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
-        }
-
+        #region Testes de Boletos Emitidos.
         [Test]
         public void CT02MerchantBoletoEmitidosTest()
         {
             try
             {
-                driver.Navigate().GoToUrl(baseURL);
-                driver.Manage().Window.Maximize();
-                login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!");
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                Thread.Sleep(4000);
+                //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
+                login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
+                //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
                 boleto.ProcessoDeFiltragemEmitidos();
             }
-            catch (Exception ex )
+            catch (Exception ex)
             {
                 Helper.criarPasta();
-                Helper.capturaImagem(driver, "CT02MerchantBoletoEmitidos", "VizualizarboletosEmitidos");
+                Helper.capturaImagem(Driver, "CT02MerchantBoletoEmitidos", "VizualizarboletosEmitidos");
                 Thread.Sleep(800);
-                MailService.sendMail(ex.StackTrace, "Teste de Vizualização de Boletos Emitidos.");
+                //MailService.sendMail(ex.StackTrace, "Teste de Vizualização de Boletos Emitidos.");
                 Helper.deletarPasta();
             }
-            finally
-            {
-                driver.Close();
-            }
         }
+        #endregion
+
     }
 }

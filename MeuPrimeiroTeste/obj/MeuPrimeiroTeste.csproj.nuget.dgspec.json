@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Treinamento 6\\Desktop\\Projeto de Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj": {}
+    "C:\\Users\\Treinamento 6\\Desktop\\TestesBackUp0811\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Treinamento 6\\Desktop\\Projeto de Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj": {
+    "C:\\Users\\Treinamento 6\\Desktop\\TestesBackUp0811\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Treinamento 6\\Desktop\\Projeto de Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
+        "projectUniqueName": "C:\\Users\\Treinamento 6\\Desktop\\TestesBackUp0811\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
         "projectName": "MeuPrimeiroTeste",
-        "projectPath": "C:\\Users\\Treinamento 6\\Desktop\\Projeto de Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
+        "projectPath": "C:\\Users\\Treinamento 6\\Desktop\\TestesBackUp0811\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
         "packagesPath": "C:\\Users\\Treinamento 6\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Treinamento 6\\Desktop\\Projeto de Teste\\MeuPrimeiroTeste\\obj\\",
+        "outputPath": "C:\\Users\\Treinamento 6\\Desktop\\TestesBackUp0811\\Projeto-de-Teste\\MeuPrimeiroTeste\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -65,7 +65,7 @@
             },
             "Selenium.Support": {
               "target": "Package",
-              "version": "[3.12.0, )"
+              "version": "[3.141.0, )"
             },
             "Selenium.WebDriver.ChromeDriver": {
               "target": "Package",
@@ -73,7 +73,7 @@
             },
             "Selenium.WebDriver.GeckoDriver": {
               "target": "Package",
-              "version": "[0.17.0, )"
+              "version": "[0.26.0, )"
             },
             "Selenium.WebDriver.IEDriver": {
               "target": "Package",
@@ -81,7 +81,7 @@
             },
             "xunit": {
               "target": "Package",
-              "version": "[2.4.0, )"
+              "version": "[2.4.1, )"
             },
             "xunit.runner.visualstudio": {
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",

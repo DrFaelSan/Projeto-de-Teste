@@ -1,39 +1,40 @@
 ﻿using MeuPrimeiroTeste.Logger;
+using MeuPrimeiroTeste.Util;
 using NUnit.Framework;
 using OpenQA.Selenium;
+using System;
 using System.Threading;
 namespace MeuPrimeiroTeste.PageObject
 {
     /// <summary>
     /// Mapeamento da página de Login.
     /// </summary>
-    public class login
+    public class Login : Base
     {
-        public IWebDriver _driver;
-
-        public login(IWebDriver driver) => _driver = driver; 
-
+        #region Mapeamento da pagina 
         //Mapeamento do Login.
-        private IWebElement Email => _driver.FindElement(By.Name("Email"));
-        private IWebElement Senha => _driver.FindElement(By.Name("Senha"));
-        private IWebElement BtnLoginEntrar => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Recuperar'])[1]/following::div[2]"));
-        private IWebElement PopUpAtencao => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Atenção'])[1]/following::p[1]"));
-        private IWebElement PopUpAtencaoDadosInvalidos => _driver.FindElement(By.Id("QXRlbiVDMyVBNyVDMyVBM29Vc3UlQzMlQTFyaW8lMjBlJTJGb3UlMjBzZW5oYSUyMGludiVDMyVBMWxpZG9zb3Jhbmdl"));
+        private IWebElement Email => Driver.FindElement(By.Name("Email"));
+        private IWebElement Senha => Driver.FindElement(By.Name("Senha"));
+        private IWebElement BtnLoginEntrar => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Recuperar'])[1]/following::div[2]"));
+        private IWebElement PopUpAtencao => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Atenção'])[1]/following::p[1]"));
+        private IWebElement PopUpAtencaoDadosInvalidos => Driver.FindElement(By.Id("QXRlbiVDMyVBNyVDMyVBM29Vc3UlQzMlQTFyaW8lMjBlJTJGb3UlMjBzZW5oYSUyMGludiVDMyVBMWxpZG9zb3Jhbmdl"));
+        #endregion
 
+       #region Metodos de Testes 
         public void ExecutarLogin(string email, string senha)
         {
             Email.SendKeys(email);
             Senha.SendKeys(senha);
             BtnLoginEntrar.Click();
-            Thread.Sleep(1250);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
         }
 
         public void ExecutarLoginSemDados()
         {
             BtnLoginEntrar.Click();
-            Thread.Sleep(250);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             Assert.IsTrue(PopUpAtencao.Displayed);
-            EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
+           // EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
             Assert.AreEqual(PopUpAtencao.Text.ToLower(), "Necessário informar o(s) campos abaixo!".ToLower());
             PopUpAtencao.Click();
 
@@ -43,7 +44,7 @@ namespace MeuPrimeiroTeste.PageObject
         {
             Senha.SendKeys(senha);
             BtnLoginEntrar.Click();
-            Thread.Sleep(250);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             Assert.IsTrue(PopUpAtencao.Displayed);
             EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
             Assert.AreEqual(PopUpAtencao.Text.ToLower(), "Necessário informar o(s) campos abaixo!".ToLower());
@@ -54,7 +55,7 @@ namespace MeuPrimeiroTeste.PageObject
         {
             Email.SendKeys(email);
             BtnLoginEntrar.Click();
-            Thread.Sleep(250);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             Assert.IsTrue(PopUpAtencao.Displayed);
             EscreverDados.Escrever(PopUpAtencao.Text.ToLower());
             Assert.AreEqual(PopUpAtencao.Text.ToLower(), "Necessário informar o(s) campos abaixo!".ToLower());
@@ -66,12 +67,14 @@ namespace MeuPrimeiroTeste.PageObject
             Email.SendKeys("email@exemplo.com");
             Senha.SendKeys("SenhaErrada");
             BtnLoginEntrar.Click();
-            Thread.Sleep(500);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
             PopUpAtencaoDadosInvalidos.Click();
             Assert.IsTrue(PopUpAtencaoDadosInvalidos.Displayed);
             EscreverDados.Escrever(PopUpAtencaoDadosInvalidos.Text.ToLower());
             Assert.AreEqual(PopUpAtencaoDadosInvalidos.Text.ToLower(), "atenção\r\nusuário e/ou senha inválidos".ToLower());
         }
+
+        #endregion
 
     }
 }

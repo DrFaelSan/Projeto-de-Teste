@@ -1,50 +1,49 @@
 ﻿using OpenQA.Selenium;
 using System.Threading;
 using OpenQA.Selenium.Support.UI;
-using NUnit.Framework;
+using MeuPrimeiroTeste.Util;
 
 namespace MeuPrimeiroTeste.PageObject
 {
     /// <summary>
     /// Mapeamento do processo de Boletos Emitidos.
     /// </summary>
-    public class BoletoEmitidos
+    public class BoletoEmitidos : Base
     {
-        public IWebDriver _driver;
+        #region Mapeamento da pagina #endregion
+        private IWebElement BtnBoleto => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Dashboard'])[1]/following::span[1]"));
 
-        public BoletoEmitidos(IWebDriver driver) => _driver = driver;
+        private IWebElement BtnEmitidos => Driver.FindElement(By.LinkText("Emitidos"));
 
-        private IWebElement BtnBoleto => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Dashboard'])[1]/following::span[1]"));
+        private IWebElement SelecionaData => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[1]/following::span[6]"));
 
-        private IWebElement BtnEmitidos => _driver.FindElement(By.LinkText("Emitidos"));
+        private IWebElement VoltaMes => Driver.FindElement(By.CssSelector("svg.vc-svg-icon"));
 
-        private IWebElement SelecionaData => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[1]/following::span[6]"));
+        private IWebElement SelecionaDia19 => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[1]/following::span[25]"));
 
-        private IWebElement VoltaMes => _driver.FindElement(By.CssSelector("svg.vc-svg-icon > path"));
+        private IWebElement Seleciona50RegistrosPorPagina => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Registros por Página:'])[1]/following::select[1]"));
 
-        private IWebElement SelecionaDia19 => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='D'])[1]/following::span[25]"));
+        private IWebElement LimpaDoc => Driver.FindElement(By.Name("Documento"));
 
-        private IWebElement Seleciona50RegistrosPorPagina => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Registros por Página:'])[1]/following::select[1]"));
+        private IWebElement LimpaRazao => Driver.FindElement(By.Name("NomeRazao"));
 
-        private IWebElement LimpaDoc => _driver.FindElement(By.Name("Documento"));
+        private IWebElement TodosSplits => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Split:'])[1]/following::select[1]"));
 
-        private IWebElement LimpaRazao => _driver.FindElement(By.Name("NomeRazao"));
+        private IWebElement Filtrar => Driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Filtrar'])[1]/i[1]"));
+        #endregion
 
-        private IWebElement TodosSplits => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Split:'])[1]/following::select[1]"));
-
-        private IWebElement Filtrar => _driver.FindElement(By.XPath("(.//*[normalize-space(text()) and normalize-space(.)='Filtrar'])[1]/i[1]"));
-     
+        #region Metodos de Testes 
         public void ProcessoDeFiltragemEmitidos()
         {
-            BtnBoleto.Click(); 
+            BtnBoleto.Click();
             Thread.Sleep(1300);
-            BtnEmitidos.Click(); 
+            BtnEmitidos.Click();
             Thread.Sleep(1300);
-            SelecionaData.Click(); 
+            SelecionaData.Click();
             Thread.Sleep(350);
             VoltaMes.Click();
             Thread.Sleep(350);
-            VoltaMes.Click(); 
+            VoltaMes.Click();
             Thread.Sleep(350);
             SelecionaDia19.Click();
             Thread.Sleep(350);
@@ -55,7 +54,8 @@ namespace MeuPrimeiroTeste.PageObject
             TodosSplits.Click();
             Thread.Sleep(350);
             Filtrar.Click();
-            Thread.Sleep(350);
+            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
         }
+        #endregion
     }
 }

@@ -1,122 +1,48 @@
 ﻿using System;
-using System.Text;
 using System.Threading;
 using MeuPrimeiroTeste.Logger;
 using MeuPrimeiroTeste.PageObject;
 using NUnit.Framework;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
+using MeuPrimeiroTeste.Util;
 
 namespace STMerchant
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.Fixtures)]
-    public class CT03MerchantBoletoLote
+    //[Parallelizable(ParallelScope.Fixtures)] /*aqui eu deixo todos os testes de login em paralelo para rodar em conjunto*/
+    public class CT03MerchantBoletoLote : Metodos
     {
-        private IWebDriver driver;
-        private StringBuilder verificationErrors;
-        private string baseURL;
-        private bool acceptNextAlert = true;
-        private login login;
-        private BoletoLote lote;
+        private Login login = new Login();
+        private BoletoLote lote = new BoletoLote();
+
+        //Aqui declaro qual navegador vou abrir meus testes!.
+        public CT03MerchantBoletoLote() : base(Browsers.Chrome) { }
 
 
-        [SetUp] 
-        public void SetupTest()
-        {
-            ChromeOptions chromeOptions = new ChromeOptions();
-            chromeOptions.AddArguments("--test-type", "--disable-hang-monitor", "--new-window", "--no-sandbox", "--lang=" + "pt-BR");
-            driver = new ChromeDriver(AppDomain.CurrentDomain.BaseDirectory, chromeOptions); ;
-            baseURL = "http://merchant.intermeiopagamentos.com/#/";
-            verificationErrors = new StringBuilder();
-            login = new login(driver);
-            lote = new BoletoLote(driver);
-        }
-
-        [TearDown]
-        public void TeardownTest()
-        {
-            try
-            {
-                driver.Quit();
-            }
-            catch (Exception)
-            {
-                // Ignore errors if unable to close the browser
-            }
-            Assert.AreEqual("", verificationErrors.ToString());
-        }
-
+        #region Testes de Boleto Lote.
         [Test]
         public void CT03MerchantBoletoLoteTest()
         {
             try
             {
-                driver.Navigate().GoToUrl(baseURL);
-                driver.Manage().Window.Maximize();
-                login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!");
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                //Thread.Sleep(4000);
+                //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
+                login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
+                //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
                 lote.VizualizarBoletosEmLote();
             }
             catch (Exception ex)
             {
                 Helper.criarPasta();
-                Helper.capturaImagem(driver, "CT03MerchantBoletoLote", "VizualizacaoBoletoLote");
+                Helper.capturaImagem(Driver, "CT03MerchantBoletoLote", "VizualizacaoBoletoLote");
                 MailService.sendMail(ex.StackTrace, "Teste de vizualização Boleto/Lote");
                 Thread.Sleep(1250);
                 Helper.deletarPasta();
             }
-            finally
-            {
-                driver.Close();
-            }
         }
 
-        private bool IsElementPresent(By by)
-        {
-            try
-            {
-                driver.FindElement(by);
-                return true;
-            }
-            catch (NoSuchElementException)
-            {
-                return false;
-            }
-        }
-
-        private bool IsAlertPresent()
-        {
-            try
-            {
-                driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException)
-            {
-                return false;
-            }
-        }
-
-        private string CloseAlertAndGetItsText()
-        {
-            try
-            {
-                IAlert alert = driver.SwitchTo().Alert();
-                string alertText = alert.Text;
-                if (acceptNextAlert)
-
-                    alert.Accept();
-
-                else
-
-                    alert.Dismiss();
-
-                return alertText;
-            }
-            finally
-            {
-                acceptNextAlert = true;
-            }
-        }
+        #endregion
     }
 }
