@@ -1,5 +1,4 @@
 ﻿using System;
-using MeuPrimeiroTeste.Logger;
 using NUnit.Framework;
 using MeuPrimeiroTeste.PageObject;
 using System.Threading;

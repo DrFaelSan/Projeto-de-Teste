@@ -1,5 +1,4 @@
-﻿using MeuPrimeiroTeste.Logger;
-using MeuPrimeiroTeste.Util;
+﻿using MeuPrimeiroTeste.Util;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;

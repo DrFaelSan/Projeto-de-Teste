@@ -1,10 +1,7 @@
 using System;
-using MeuPrimeiroTeste.Logger;
 using NUnit.Framework;
 using MeuPrimeiroTeste.PageObject;
-using System.Threading;
 using MeuPrimeiroTeste.Util;
-using Docker.DotNet.Models;
 
 namespace STMerchant
 {

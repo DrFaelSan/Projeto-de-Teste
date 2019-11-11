@@ -1,7 +1,6 @@
 ﻿using OpenQA.Selenium;
 using System.Threading;
 using NUnit.Framework;
-using MeuPrimeiroTeste.Logger;
 using MeuPrimeiroTeste.Util;
 using System;
 
