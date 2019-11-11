@@ -59,9 +59,9 @@ namespace MeuPrimeiroTeste.PageObject
         public void Sacado(string documento, string nomeourazao, string celular, string email, string cep, string numero)
         {
             BtnBoleto.Click();
-            Thread.Sleep(1300);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             BtnEmissao.Click();
-            Thread.Sleep(1300);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             Documento.SendKeys(documento);
             Thread.Sleep(350);
             NomeRazao.SendKeys(nomeourazao);
@@ -75,22 +75,20 @@ namespace MeuPrimeiroTeste.PageObject
             Numero.SendKeys(numero);
             Thread.Sleep(350);
             BtnProximaPagina1.Click();
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
         }
 
         public void SacadoComErros()
         {
             BtnBoleto.Click();
-            Thread.Sleep(1300);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             BtnEmissao.Click();
-            Thread.Sleep(1300);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             //Sem Dados
             BtnProximaPagina1.Click();
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+            Thread.Sleep(450);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();
             //Sem nenhum dado até o Momento.
             //Só com Documento Válido
             Documento.SendKeys("56121890010");
@@ -98,11 +96,10 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();
             //Só com Documento Válido até o momento.
             //Com Adição do Nome.
+            Documento.Clear();
             Documento.SendKeys("56121890010");
             Thread.Sleep(350);
             NomeRazao.SendKeys("Rafael Vieira Tester");
@@ -110,13 +107,13 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();
             //Só com o Documento e o Nome Válido até o momento.
             //Com adição do Celular e o E-Mail.
+            Documento.Clear();
             Documento.SendKeys("56121890010");
             Thread.Sleep(350);
+            NomeRazao.Clear();
             NomeRazao.SendKeys("Rafael Vieira Tester");
             Thread.Sleep(350);
             Celular.SendKeys("11999665889");
@@ -126,17 +123,19 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();
             // Com Todos Dados Pessoais Válidos Até o Momento.
             //Com CEP Válido porém sem o Número
+            Documento.Clear();
             Documento.SendKeys("56121890010");
             Thread.Sleep(350);
+            NomeRazao.Clear();
             NomeRazao.SendKeys("Rafael Vieira Tester");
             Thread.Sleep(350);
+            Celular.Clear();
             Celular.SendKeys("11999665889");
             Thread.Sleep(350);
+            Email.Clear();
             Email.SendKeys("rafaelvplima@gmail.com");
             Thread.Sleep(350);
             Cep.SendKeys("03980150");
@@ -144,27 +143,28 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();
             //Dados Pessoais e o CEP Válido.
             //Com Todos Dados Inseridos, Porém o CPF Inválido.
+            Documento.Clear();
             Documento.SendKeys("561218900");
             Thread.Sleep(350);
+            NomeRazao.Clear();
             NomeRazao.SendKeys("Rafael Vieira Tester");
             Thread.Sleep(350);
+            Celular.Clear();
             Celular.SendKeys("11999665889");
             Thread.Sleep(350);
+            Email.Clear();
             Email.SendKeys("rafaelvplima@gmail.com");
             Thread.Sleep(350);
+            Cep.Clear();
             Cep.SendKeys("03980150");
             Thread.Sleep(350);
             BtnProximaPagina1.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();
             //Pronto. Todos Erros Possíveis.
         }
 
@@ -175,7 +175,7 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(350);
             Numero14Calendario.Click();
             BtnProximaPagina2.Click();
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+            Thread.Sleep(500);
         }
         
         public void CobrancaComErros()
@@ -184,43 +184,34 @@ namespace MeuPrimeiroTeste.PageObject
             BtnProximaPagina2.Click();
             Thread.Sleep(250);
             Assert.IsTrue(PopUpValorInvalido.Displayed);
-            EscreverDados.Escrever(PopUpValorInvalido.Text);
             Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser inferior a R$ 10,00".ToLower());
-            PopUpValorInvalido.Click();
             //Cobraça com valor valido
             Valor.SendKeys("R$ 1.520,00");
             Thread.Sleep(500);
             BtnProximaPagina2.Click();
             Thread.Sleep(600);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();       
             BtnProximaPagina2.Click();
             Thread.Sleep(600);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();
             //Cobrança com os auto preencher
             BtnAutoPreencher.Click();
             Thread.Sleep(350);
             BtnProximaPagina2.Click();
             Thread.Sleep(600);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
             Assert.AreEqual(PopUpPreencherDados.Text.ToLower(), "preenchimento obrigatório".ToLower());
-            PopUpPreencherDados.Click();
             Thread.Sleep(1000);
             Numero14Calendario.Click();
             //Cobraça com valor valido
-            Thread.Sleep(3000);
+            Thread.Sleep(TimeSpan.FromSeconds(3));
             Valor.Clear();
             Valor.SendKeys("R$ 50.500,01");
             BtnProximaPagina2.Click();
             Thread.Sleep(500);
             Assert.IsTrue(PopUpValorInvalido.Displayed);
-            EscreverDados.Escrever(PopUpValorInvalido.Text);
             Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser superior a R$50000,00".ToLower());
         }
 
@@ -234,9 +225,7 @@ namespace MeuPrimeiroTeste.PageObject
             DiaInicioCobrancaMulta.Click();
             Thread.Sleep(500);
             BtnProximaPagina3.Click();
-            Thread.Sleep(750);
-            Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser superior a R$50000,00".ToLower());
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+            Thread.Sleep(500);
 
         }
 
@@ -250,10 +239,8 @@ namespace MeuPrimeiroTeste.PageObject
             DiaInicioCobrancaMulta.Click();
             Thread.Sleep(500);
             BtnProximaPagina3.Click();
-            Thread.Sleep(500);
+            Thread.Sleep(350);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
-            PopUpPreencherDados.Click();
         }
 
         public void Split(string documentoSplit, string taxaSplit, string celularSplit, string nomeRazaoSplit, string emailSplit)
@@ -272,9 +259,6 @@ namespace MeuPrimeiroTeste.PageObject
             Thread.Sleep(350);
             BtnProximaPagina4.Click();
             Thread.Sleep(500);
-            Assert.AreEqual(PopUpValorInvalido.Text.ToLower(), "Valor do título não pode ser superior a R$50000,00".ToLower());
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-
         }
 
         public void SplitComErros()
@@ -292,13 +276,6 @@ namespace MeuPrimeiroTeste.PageObject
             BtnIncluirSplit.Click();
             Thread.Sleep(350);
             Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
-            PopUpPreencherDados.Click();
-            BtnProximaPagina4.Click();
-            Thread.Sleep(500);
-            Assert.IsTrue(PopUpPreencherDados.Displayed);
-            EscreverDados.Escrever(PopUpPreencherDados.Text);
-            PopUpPreencherDados.Click();
         }
 
         #endregion

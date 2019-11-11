@@ -37,9 +37,9 @@ namespace MeuPrimeiroTeste.PageObject
         public void ProcessoDeFiltragemEmitidos()
         {
             BtnBoleto.Click();
-            Thread.Sleep(1300);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             BtnEmitidos.Click();
-            Thread.Sleep(1300);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             SelecionaData.Click();
             Thread.Sleep(350);
             VoltaMes.Click();

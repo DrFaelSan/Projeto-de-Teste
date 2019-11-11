@@ -8,7 +8,7 @@ using MeuPrimeiroTeste.Util;
 namespace STMerchant
 {
     [TestFixture]
-    //[Parallelizable(ParallelScope.Fixtures)] /*aqui eu deixo todos os testes de login em paralelo para rodar em conjunto*/
+    [Parallelizable(ParallelScope.Fixtures)] /*aqui eu deixo todos os testes de login em paralelo para rodar em conjunto*/
     public class CT00MerchantLogin : Metodos
     {
 
@@ -21,86 +21,86 @@ namespace STMerchant
         [Test]
         public void TesteSemDadosLogin()
         {
-            try
-            {
+            //try
+            //{
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
                 Thread.Sleep(4000);
                 login.ExecutarLoginSemDados();
-            }
-            catch (Exception ex)
-            {
-                Helper.criarPasta();
-                Helper.capturaImagem(Driver, "TesteSemDadosLogin", "SemDados");
-                EscreverDados.Escrever(ex.Message);
-                Thread.Sleep(800);
-                //MailService.sendMail(ex.StackTrace, "Teste Sem Dados no Login");
-                Helper.deletarPasta();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Helper.criarPasta();
+            //    Helper.capturaImagem(Driver, "TesteSemDadosLogin", "SemDados");
+            //    EscreverDados.Escrever(ex.Message);
+            //    Thread.Sleep(800);
+            //    //MailService.sendMail(ex.StackTrace, "Teste Sem Dados no Login");
+            //    Helper.deletarPasta();
+            //}
         }
 
         [Test]
         public void TesteSemEmailLogin()
         {
-            try
-            {
+            //try
+            //{
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
                 login.ExecurtarLoginSemEmail("Senha123!");
-            }
-            catch (Exception ex)
-            {
-                Helper.criarPasta();
-                Helper.capturaImagem(Driver, "TesteSemEmailLogin", "SemEmail");
-                EscreverDados.Escrever(ex.Message);
-                Thread.Sleep(800);
-                //MailService.sendMail(ex.StackTrace, "Teste Sem Email no Login");
-                Helper.deletarPasta();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Helper.criarPasta();
+            //    Helper.capturaImagem(Driver, "TesteSemEmailLogin", "SemEmail");
+            //    EscreverDados.Escrever(ex.Message);
+            //    Thread.Sleep(800);
+            //    //MailService.sendMail(ex.StackTrace, "Teste Sem Email no Login");
+            //    Helper.deletarPasta();
+            //}
         }
 
         [Test]
         public void TesteSemSenhaLogin()
         {
-            try
-            {
+            //try
+            //{
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
                 login.ExecurtarLoginSemSenha("bruno.f@inttecnologia.com.br");
-            }
-            catch (Exception ex)
-            {
-                Helper.criarPasta();
-                Helper.capturaImagem(Driver, "TesteSemSenhaLogin", "SemSenha");
-                EscreverDados.Escrever(ex.Message);
-                Thread.Sleep(800);
-                //MailService.sendMail(ex.StackTrace, "Teste Sem Senha no Login");
-                Helper.deletarPasta();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Helper.criarPasta();
+            //    Helper.capturaImagem(Driver, "TesteSemSenhaLogin", "SemSenha");
+            //    EscreverDados.Escrever(ex.Message);
+            //    Thread.Sleep(800);
+            //    //MailService.sendMail(ex.StackTrace, "Teste Sem Senha no Login");
+            //    Helper.deletarPasta();
+            //}
         }
 
         [Test]
         public void TesteComDadosIncorretos()
         {
-            try
-            {
+            //try
+            //{
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
                 login.ExecutarLoginComDadosIncorretos();
-            }
-            catch (Exception ex)
-            {
-                Helper.criarPasta();
-                Helper.capturaImagem(Driver, "TesteComDadosIncorretos", "TesteComDadosIncorretos");
-                EscreverDados.Escrever(ex.Message);
-                Thread.Sleep(800);
-                //MailService.sendMail(ex.StackTrace, "Teste Com Dados Incorretos");
-                Helper.deletarPasta();
-            }
+            //}
+            //catch (Exception ex)
+            //{
+            //    Helper.criarPasta();
+            //    Helper.capturaImagem(Driver, "TesteComDadosIncorretos", "TesteComDadosIncorretos");
+            //    EscreverDados.Escrever(ex.Message);
+            //    Thread.Sleep(800);
+            //    //MailService.sendMail(ex.StackTrace, "Teste Com Dados Incorretos");
+            //    Helper.deletarPasta();
+            //}
         }
         #endregion
     }

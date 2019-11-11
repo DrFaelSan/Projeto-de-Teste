@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Treinamento 1\\Desktop\\Testers\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj": {}
+    "C:\\Users\\Treinamento 6\\Desktop\\dsadasdadqadqwdqdqw das\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Treinamento 1\\Desktop\\Testers\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj": {
+    "C:\\Users\\Treinamento 6\\Desktop\\dsadasdadqadqwdqdqw das\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Treinamento 1\\Desktop\\Testers\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
+        "projectUniqueName": "C:\\Users\\Treinamento 6\\Desktop\\dsadasdadqadqwdqdqw das\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
         "projectName": "MeuPrimeiroTeste",
-        "projectPath": "C:\\Users\\Treinamento 1\\Desktop\\Testers\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
-        "packagesPath": "C:\\Users\\Treinamento 1\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Treinamento 1\\Desktop\\Testers\\Projeto-de-Teste\\MeuPrimeiroTeste\\obj\\",
+        "projectPath": "C:\\Users\\Treinamento 6\\Desktop\\dsadasdadqadqwdqdqw das\\Projeto-de-Teste\\MeuPrimeiroTeste\\MeuPrimeiroTeste.csproj",
+        "packagesPath": "C:\\Users\\Treinamento 6\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Treinamento 6\\Desktop\\dsadasdadqadqwdqdqw das\\Projeto-de-Teste\\MeuPrimeiroTeste\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\Treinamento 1\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Treinamento 6\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -95,16 +95,10 @@
             }
           },
           "imports": [
-            "net461",
-            "net462",
-            "net47",
-            "net471",
-            "net472",
-            "net48"
+            "net461"
           ],
           "assetTargetFallback": true,
-          "warn": true,
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
+          "warn": true
         }
       }
     }

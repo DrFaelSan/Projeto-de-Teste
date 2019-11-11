@@ -26,9 +26,9 @@ namespace MeuPrimeiroTeste.PageObject
         public void VizualizarBoletosEmLote()
         {
             BtnBoleto.Click();
-            Thread.Sleep(1300);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             BtnLote.Click();
-            Thread.Sleep(1300);
+            Thread.Sleep(TimeSpan.FromSeconds(1));
             Dia18Novembro.Click();
             Thread.Sleep(350);
             BtnVoltarMes.Click();
@@ -40,7 +40,7 @@ namespace MeuPrimeiroTeste.PageObject
             new SelectElement(Selecionar100Registros).SelectByText("100");
             Thread.Sleep(350);
             BtnFiltrar.Click();
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+            Thread.Sleep(350);
         }
 
         #endregion
