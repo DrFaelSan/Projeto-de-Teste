@@ -2,15 +2,16 @@ using System;
 using NUnit.Framework;
 using MeuPrimeiroTeste.PageObject;
 using MeuPrimeiroTeste.Util;
+using System.Threading;
 
 namespace STMerchant
 {
     [TestFixture]
-    [Parallelizable(ParallelScope.Fixtures)] /*aqui eu deixo todos os testes de login em paralelo para rodar em conjunto*/
+    //[Parallelizable(ParallelScope.Fixtures)] /*aqui eu deixo todos os testes de login em paralelo para rodar em conjunto*/
     public class CT01MerchantBoletoEmissao : Metodos
     {
-        private Login login = new Login();
-        private BoletoEmissao boleto = new BoletoEmissao();
+        private readonly Login login = new Login();
+        private readonly BoletoEmissao boleto = new BoletoEmissao();
 
         //Aqui declaro qual navegador vou abrir meus testes!.
         public CT01MerchantBoletoEmissao() : base(Browsers.Chrome) { }
@@ -19,99 +20,75 @@ namespace STMerchant
         [Test]//O Teste.
         public void CT01MerchantBoletoEmissaoTest()
         {
-            //try
-            //{
-            Driver.Navigate().GoToUrl(baseURL);
-            Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-            //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
-            login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
-            //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
-            boleto.Sacado("46248408874", "Rafael Vieira Tester", "11987533130", "rafaelvplima@gmail.com", "04383037", "83");
-            boleto.Cobranca("R$ 1.500,00");
-            boleto.JurosEMulta("05,00%", "05,00%");
-            boleto.Split("443.114.018-25", "50,00%", "(11) 95784-3798", "Matheus Santana", "matheus-397@hotmail.com");
-            //}
-            //catch (Exception ex)
-            //{
-            //    Helper.criarPasta();
-            //    Helper.capturaImagem(Driver, "CT01MerchantBoletoEmissaoTest", "ProcessoDeEmissão");
-            //    Thread.Sleep(800);
-            //    //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão de Boleto.");
-            //    Helper.deletarPasta();
-            //}
+            try
+            {
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                login.ExecutarLogin("email", "senha"); /*Login Para Testes*/
+                boleto.Sacado("documentoSacado", "Rafael Vieira Tester", "numeroCelularSacado", "Email", "Cep", "NumeroCasaSacado");
+                boleto.Cobranca("R$ 1.500,00");
+                boleto.JurosEMulta("05,00%", "05,00%");
+                boleto.Split("documentoSplit", "50,00%", "NumeroCelularSplit", "Matheus Santana", "EmailSplit");
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         [Test]
         public void SacadoComErrosTest()
         {
-            //try
-            //{
-            Driver.Navigate().GoToUrl(baseURL);
-            Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-            //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
-            login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
-           //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
-            boleto.SacadoComErros();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Helper.criarPasta();
-            //    Helper.capturaImagem(Driver, "SacadoComErrosTest", "SacadoComErros");
-            //    Thread.Sleep(800);
-            //    //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Sacado Com Erros.");
-            //    Helper.deletarPasta();
-            //}
+            try
+            {
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                login.ExecutarLogin("email", "senha"); /*Login Para Testes*/
+                boleto.SacadoComErros();
+            }
+            catch (Exception ex)
+            { 
+            throw;
+            }
         }
 
         [Test]
         public void CobrancaComErrosTest()
         {
-            //try
-            //{
-            Driver.Navigate().GoToUrl(baseURL);
-            Driver.Manage().Window.Maximize();
-            Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-            //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
-            login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
-            //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
-            boleto.Sacado("77096739025", "Rafael Vieira Tester", "11999665889", "rafaelvplima@gmail.com", "03980150", "693");
-            boleto.CobrancaComErros();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Helper.criarPasta();
-            //    Helper.capturaImagem(Driver, "CobrancaComErrosTest", "CobrancaComErros()");
-            //    Thread.Sleep(800);
-            //    //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Cobrança Com Erros.");
-            //    Helper.deletarPasta();
-            //}
+            try
+            {
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
+                login.ExecutarLogin("email", "senha"); /*Login Para Testes*/
+                boleto.Sacado("documentoSacado", "Rafael Vieira Tester", "numeroCelularSacado", "Email", "Cep", "NumeroCasaSacado");
+                boleto.CobrancaComErros();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
 
         [Test]
         public void JurosComErroTest()
         {
-            //try
-            //{
-            Driver.Navigate().GoToUrl(baseURL);
-            Driver.Manage().Window.Maximize();
-            //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
-            login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
-            //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
-            boleto.Sacado("77096739025", "Rafael Vieira Tester", "11999665889", "rafaelvplima@gmail.com", "03980150", "693");
-            boleto.Cobranca("R$ 1.520,00");
-            boleto.JurosEMultaComErros();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Helper.criarPasta();
-            //    Helper.capturaImagem(Driver, "CobrancaComErrosTest", "CobrancaComErros()");
-            //    Thread.Sleep(800);
-            //    //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Cobrança Com Erros.");
-            //    //Helper.deletarPasta();
-            //}
+            try
+            {
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                login.ExecutarLogin("email", "senha"); /*Login Para Testes*/
+                boleto.Sacado("documentoSacado", "Rafael Vieira Tester", "numeroCelularSacado", "Email", "Cep", "NumeroCasaSacado");
+                boleto.Cobranca("R$ 1.520,00");
+                boleto.JurosEMultaComErros();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
 
         }
 
@@ -119,26 +96,20 @@ namespace STMerchant
         public void SplitComErroTest()
         {
 
-            //try
-            //{
-            Driver.Navigate().GoToUrl(baseURL);
-            Driver.Manage().Window.Maximize();
-            //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
-            login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
-            //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
-            boleto.Sacado("46248408874", "Rafael Vieira Tester", "11987533130", "rafaelvplima@gmail.com", "04383037", "83");
-            boleto.Cobranca("R$ 1.500,00");
-            boleto.JurosEMulta("05,00%", "05,00%");
-            boleto.SplitComErros();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Helper.criarPasta();
-            //    Helper.capturaImagem(Driver, "CobrancaComErrosTest", "CobrancaComErros()");
-            //    Thread.Sleep(800);
-            //    //MailService.sendMail(ex.StackTrace, "Teste de Processo de Emissão Cobrança Com Erros.");
-            //    //Helper.deletarPasta();
-            //}
+            try
+            {
+                Driver.Navigate().GoToUrl(baseURL);
+                Driver.Manage().Window.Maximize();
+                login.ExecutarLogin("email", "senha"); /*Login Para Testes*/
+                boleto.Sacado("documentoSacado", "Rafael Vieira Tester", "numeroCelularSacado", "Email", "Cep", "NumeroCasaSacado");
+                boleto.Cobranca("R$ 1.500,00");
+                boleto.JurosEMulta("05,00%", "05,00%");
+                boleto.SplitComErros();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
         #endregion
     }

@@ -20,24 +20,18 @@ namespace STMerchant
         [Test]
         public void CT03MerchantBoletoLoteTest()
         {
-            //try
-            //{
+            try
+            {
                 Driver.Navigate().GoToUrl(baseURL);
                 Driver.Manage().Window.Maximize();
                 Driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-                //login.ExecutarLogin("bruno.f@inttecnologia.com.br", "Senha123!"); /*Login Para Testes*/
-                login.ExecutarLogin("Luiz@inttecnologia.com.br", "123aA#$"); /*Login para Testes porém com Emissão de Boleto , OBS: poucos boletos...*/
-                //login.ExecutarLogin("ipay@interfocus.com.br", "1nterf0cusip4y"); /*Login que não pode Emitir Boletos...*/
+                login.ExecutarLogin("Email", "Senha"); /*Login Para Testes*/
                 lote.VizualizarBoletosEmLote();
-            //}
-            //catch (Exception ex)
-            //{
-            //    Helper.criarPasta();
-            //    Helper.capturaImagem(Driver, "CT03MerchantBoletoLote", "VizualizacaoBoletoLote");
-            //    //MailService.sendMail(ex.StackTrace, "Teste de vizualização Boleto/Lote");
-            //    Thread.Sleep(1250);
-            //    Helper.deletarPasta();
-            //}
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         #endregion

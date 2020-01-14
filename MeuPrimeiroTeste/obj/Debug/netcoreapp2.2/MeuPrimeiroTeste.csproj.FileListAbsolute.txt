@@ -112,3 +112,21 @@ C:\Users\Treinamento 6\Desktop\dsadasdadqadqwdqdqw das\Projeto-de-Teste\MeuPrime
 C:\Users\Treinamento 6\Desktop\dsadasdadqadqwdqdqw das\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.AssemblyInfo.cs
 C:\Users\Treinamento 6\Desktop\dsadasdadqadqwdqdqw das\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.dll
 C:\Users\Treinamento 6\Desktop\dsadasdadqadqwdqdqw das\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.pdb
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.dll
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\NUnit3.TestAdapter.pdb
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\nunit.engine.dll
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\nunit.engine.api.dll
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\xunit.runner.utility.netcoreapp10.dll
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\MeuPrimeiroTeste.deps.json
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\MeuPrimeiroTeste.runtimeconfig.json
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\MeuPrimeiroTeste.runtimeconfig.dev.json
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\MeuPrimeiroTeste.dll
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\bin\Debug\netcoreapp2.2\MeuPrimeiroTeste.pdb
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.csprojAssemblyReference.cache
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.csproj.CoreCompileInputs.cache
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.AssemblyInfoInputs.cache
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.AssemblyInfo.cs
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.dll
+C:\Users\Treinamento 6\Desktop\Projeto-de-Teste\MeuPrimeiroTeste\obj\Debug\netcoreapp2.2\MeuPrimeiroTeste.pdb
